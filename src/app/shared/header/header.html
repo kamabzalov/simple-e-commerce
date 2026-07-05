@@ -1,3 +1,13 @@
 <header class="h-[56px] bg-zinc-900">
-  <ng-content></ng-content>
+  <div class="flex items-center h-full mx-auto max-w-7xl">
+    <ng-content></ng-content>
+    <select
+      #langSelect
+      [value]="lang()"
+      class="ml-auto bg-white rounded py-2 px-1"
+      (change)="changeLanguage(langSelect.value)">
+      <option value="en">English</option>
+      <option value="ru">Russian</option>
+    </select>
+  </div>
 </header>

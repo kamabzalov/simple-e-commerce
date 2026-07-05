@@ -13,7 +13,8 @@ export const routes: Routes = [
       },
       {
         path: 'products/:id',
-        loadComponent: () => import('./features/shop/product/pages/product').then(c => c.ProductDetails),
+        loadComponent: () =>
+          import('./features/shop/product/pages/product').then(c => c.ProductDetails),
       },
     ],
   },
@@ -24,5 +25,5 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: '',
-  }
+  },
 ];

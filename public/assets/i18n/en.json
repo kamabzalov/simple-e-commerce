@@ -4,5 +4,15 @@
     "SUBTITLE": "Browse our latest products",
     "NO_PRODUCTS": "No products found",
     "LOADING": "Loading..."
+  },
+  "SHOP": {
+    "HEADER": {
+      "HOME_LINK": "Home"
+    }
+  },
+  "PRODUCT": {
+    "PRICE": "Price",
+    "DESCRIPTION": "Description",
+    "CATEGORY": "Category"
   }
 }
