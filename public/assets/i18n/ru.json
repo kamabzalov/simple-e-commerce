@@ -4,5 +4,16 @@
     "SUBTITLE": "Посмотрите наши товары",
     "NO_PRODUCTS": "Нет товаров",
     "LOADING": "Загрузка..."
+  },
+  "SHOP": {
+    "HEADER": {
+      "HOME_LINK": "Главная"
+    }
+  },
+  "PRODUCT": {
+    "PRICE": "Цена",
+    "DESCRIPTION": "Описание",
+    "CATEGORY": "Категория",
+    "NO_DATA": "Ошибка"
   }
 }
