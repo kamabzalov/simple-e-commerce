@@ -6,12 +6,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { CurrencyPipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
+import { Alert } from '../../../../shared/alert/alert';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.html',
   styleUrl: './product.css',
-  imports: [CurrencyPipe, TranslatePipe],
+  imports: [CurrencyPipe, TranslatePipe, Alert],
 })
 export class ProductDetails {
   private route = inject(ActivatedRoute);

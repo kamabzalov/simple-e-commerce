@@ -12,9 +12,7 @@
 @if (products.isLoading()) {
   {{ 'HOME.LOADING' | translate }}
 } @else if (products.error() || !productsList?.length) {
-  <div class="rounded-2xl border border-red-200 bg-red-50 p-6 text-red-700">
-    {{ 'HOME.NO_PRODUCTS' | translate }}
-  </div>
+  <app-alert alertText="HOME.NO_PRODUCTS"></app-alert>
 } @else {
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     @for (product of productsList; track product.id) {
