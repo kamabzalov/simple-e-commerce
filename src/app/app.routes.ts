@@ -21,4 +21,8 @@ export const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./features/admin/admin.routes').then(r => r.routes),
   },
+  {
+    path: '**',
+    redirectTo: '',
+  }
 ];
