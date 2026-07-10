@@ -6,8 +6,8 @@
       {{productData.title}}
     </h1>
 
-    <div class="flex">
-      <img class="mr-5" [src]="productData.image" [alt]="productData.title">
+    <div class="flex md:flex-row flex-col">
+      <img class="mr-5 mb-5 md:mb-0" [src]="productData.image" [alt]="productData.title">
       <div>
         <p class="mb-4">
           <span class="font-bold">{{'PRODUCT.PRICE' | translate}}:</span>
