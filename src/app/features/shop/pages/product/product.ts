@@ -8,6 +8,7 @@ import { CurrencyPipe } from '@angular/common';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Alert } from '../../../../shared/alert/alert';
 import { Meta, Title } from '@angular/platform-browser';
+import { API_URL } from '../../../../app.config';
 
 @Component({
   selector: 'app-product',
@@ -21,6 +22,7 @@ export class ProductDetails {
   private meta = inject(Meta);
   private translateService = inject(TranslateService);
   private titlePrefix = toSignal(this.translateService.stream('PRODUCT.BUY'));
+  private readonly apiUrl = inject(API_URL);
 
   protected productId = toSignal(this.route.paramMap.pipe(map(params => Number(params.get('id')))));
   protected product: HttpResourceRef<Product | undefined> = httpResource<Product | undefined>(
@@ -30,7 +32,7 @@ export class ProductDetails {
       if (!productId) {
         return undefined;
       }
-      return `https://fakestoreapi.com/products/${productId}`;
+      return `${this.apiUrl}/products/${productId}`;
     }
   );
 
