@@ -14,6 +14,7 @@
     "PRICE": "Price",
     "DESCRIPTION": "Description",
     "CATEGORY": "Category",
-    "NO_DATA": "No data available"
+    "NO_DATA": "No data available",
+    "BUY": "Buy"
   }
 }

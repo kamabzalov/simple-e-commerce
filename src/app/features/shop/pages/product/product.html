@@ -1,0 +1,33 @@
+@let productData = product.value();
+
+@if (productData) {
+  <article class="shadow-sm rounded-2xl bg-white duration-300 p-8">
+    <h1 class="mb-8 text-3xl font-bold tracking-tight text-slate-900">
+      {{ productData.title }}
+    </h1>
+
+    <div class="flex md:flex-row flex-col">
+      <img class="mr-5 mb-5 md:mb-0" [src]="productData.image" [alt]="productData.title" />
+      <div>
+        <p class="mb-4">
+          <span class="font-bold">{{ 'PRODUCT.PRICE' | translate }}:</span>
+          {{ productData.price | currency }}
+        </p>
+
+        <p class="mb-4">
+          <span class="font-bold">{{ 'PRODUCT.DESCRIPTION' | translate }}:</span>
+          {{ productData.description }}
+        </p>
+
+        <p>
+          <span class="font-bold">{{ 'PRODUCT.CATEGORY' | translate }}:&nbsp;</span>
+          <span class="rounded-full bg-slate-900 px-3 py-1 text-xs font-medium text-white">{{
+            productData.category
+          }}</span>
+        </p>
+      </div>
+    </div>
+  </article>
+} @else {
+  <app-alert alertText="PRODUCT.NO_DATA"></app-alert>
+}

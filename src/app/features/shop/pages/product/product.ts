@@ -1,12 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { httpResource, HttpResourceRef } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../../../core/models/product';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { CurrencyPipe } from '@angular/common';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Alert } from '../../../../shared/alert/alert';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product',
@@ -16,6 +17,10 @@ import { Alert } from '../../../../shared/alert/alert';
 })
 export class ProductDetails {
   private route = inject(ActivatedRoute);
+  private title = inject(Title);
+  private meta = inject(Meta);
+  private translateService = inject(TranslateService);
+  private titlePrefix = toSignal(this.translateService.stream('PRODUCT.BUY'));
 
   protected productId = toSignal(this.route.paramMap.pipe(map(params => Number(params.get('id')))));
   protected product: HttpResourceRef<Product | undefined> = httpResource<Product | undefined>(
@@ -28,4 +33,17 @@ export class ProductDetails {
       return `https://fakestoreapi.com/products/${productId}`;
     }
   );
+
+  constructor() {
+    effect(() => {
+      const product = this.product.value();
+
+      if (!product) {
+        return;
+      }
+
+      this.meta.updateTag({ name: 'description', content: product.description });
+      this.title.setTitle(`${this.titlePrefix()} ${product.title}`);
+    });
+  }
 }

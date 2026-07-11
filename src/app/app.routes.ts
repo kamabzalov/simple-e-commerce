@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { Home } from './features/shop/home/pages/home';
+import { Home } from './features/shop/pages/home/home';
 import { Shop } from './features/shop/shop';
 
 export const routes: Routes = [
@@ -14,7 +14,7 @@ export const routes: Routes = [
       {
         path: 'products/:id',
         loadComponent: () =>
-          import('./features/shop/product/pages/product').then(c => c.ProductDetails),
+          import('./features/shop/pages/product/product').then(c => c.ProductDetails),
       },
     ],
   },
