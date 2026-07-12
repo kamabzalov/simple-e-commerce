@@ -1,0 +1,19 @@
+<app-header>
+  <nav>
+    <ul class="flex gap-4">
+      <li>
+        <a class="text-white" routerLink="./">{{ 'DASHBOARD.HEADER.PRODUCTS' | translate }}</a>
+      </li>
+      <li>
+        <a class="text-white" routerLink="carts">{{ 'DASHBOARD.HEADER.CARTS' | translate }}</a>
+      </li>
+      <li>
+        <a class="text-white" routerLink="users">{{ 'DASHBOARD.HEADER.USERS' | translate }}</a>
+      </li>
+    </ul>
+  </nav>
+</app-header>
+
+<main class="mx-auto max-w-7xl py-8">
+    <router-outlet></router-outlet>
+</main>

@@ -1,9 +1,11 @@
-import { Component, injectAsync, signal } from '@angular/core';
+import { Component, inject, injectAsync, PLATFORM_ID, signal } from '@angular/core';
 import { Login } from '../../../../core/models/auth';
 import { form, FormField, FormRoot, required, validate } from '@angular/forms/signals';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -18,11 +20,14 @@ export class LoginForm {
   });
 
   private readonly authService = injectAsync(() => import('../../services/auth').then(s => s.Auth));
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private router = inject(Router);
 
   protected form = form(
     this.loginModel,
     schemaPath => {
       required(schemaPath.username);
+      required(schemaPath.password);
       validate(schemaPath.username, ({ value }) => {
         if (!value().trim().length) {
           return {
@@ -32,7 +37,15 @@ export class LoginForm {
         }
         return null;
       });
-      required(schemaPath.password);
+      validate(schemaPath.password, ({ value }) => {
+        if (!value().trim().length) {
+          return {
+            kind: 'emptyPassword',
+            message: 'Enter password',
+          };
+        }
+        return null;
+      });
     },
     {
       submission: {
@@ -41,6 +54,10 @@ export class LoginForm {
           const authService = await this.authService();
           try {
             const result = await firstValueFrom(authService.login(username, password));
+            if (this.isBrowser && result.token) {
+              localStorage.setItem('token', result.token);
+              await this.router.navigate(['/admin/dashboard']);
+            }
             return null;
           } catch (err) {
             if (err instanceof HttpErrorResponse) {
