@@ -16,5 +16,13 @@
     "CATEGORY": "Category",
     "NO_DATA": "No data available",
     "BUY": "Buy"
+  },
+  "DASHBOARD": {
+    "HEADER": {
+      "HOME_LINK": "Home",
+      "PRODUCTS": "Products",
+      "CARTS": "Carts",
+      "USERS": "Users"
+    }
   }
 }

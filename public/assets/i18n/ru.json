@@ -16,5 +16,13 @@
     "CATEGORY": "Категория",
     "NO_DATA": "Ошибка",
     "BUY": "Купить"
+  },
+  "DASHBOARD": {
+    "HEADER": {
+      "HOME_LINK": "Главная",
+      "PRODUCTS": "Продукты",
+      "CARTS": "Корзины",
+      "USERS": "Пользователи"
+    }
   }
 }
