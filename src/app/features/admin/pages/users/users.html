@@ -6,5 +6,9 @@
   <app-alert alertText="USERS.NO_USERS"></app-alert>
 } @else {
   @let products = items.value();
-  <app-table [columns]="columns" [data]="products" entityName="user"></app-table>
+  <app-table
+    (delete)="deleteUser($event)"
+    [columns]="columns"
+    [data]="products"
+    entityName="user"></app-table>
 }
