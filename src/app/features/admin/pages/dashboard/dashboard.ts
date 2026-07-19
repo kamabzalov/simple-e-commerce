@@ -7,7 +7,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-dashboard',
   imports: [Header, RouterLink, TranslatePipe, RouterOutlet],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css',
 })
 export class Dashboard {
   private router = injectAsync(() => import('@angular/router').then(s => s.Router));

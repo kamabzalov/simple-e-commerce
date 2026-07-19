@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Product } from '../../../../core/models/product';
 import { httpResource, HttpResourceRef } from '@angular/common/http';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
 import { Alert } from '../../../../shared/alert/alert';
@@ -9,9 +9,8 @@ import { API_URL } from '../../../../app.config';
 
 @Component({
   selector: 'app-home',
-  imports: [CurrencyPipe, TranslatePipe, RouterLink, Alert],
+  imports: [CurrencyPipe, TranslatePipe, RouterLink, Alert, NgOptimizedImage],
   templateUrl: './home.html',
-  styleUrl: './home.css',
 })
 export class Home {
   protected products: HttpResourceRef<Product[] | undefined>;

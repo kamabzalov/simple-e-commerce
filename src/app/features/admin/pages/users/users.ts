@@ -5,12 +5,12 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { UserService } from '../../services/user/user';
 import { User } from '../../../../core/models/user';
 import { map } from 'rxjs';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-users',
-  imports: [Alert, Table],
+  imports: [Alert, Table, TranslatePipe],
   templateUrl: './users.html',
-  styleUrl: './users.css',
 })
 export class Users {
   protected columns: (keyof User & string)[] = ['fullName', 'email', 'phone'];

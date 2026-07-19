@@ -5,7 +5,6 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-header',
   imports: [],
   templateUrl: './header.html',
-  styleUrl: './header.css',
 })
 export class Header implements OnInit {
   protected lang = model<string>('');

@@ -11,12 +11,16 @@
         <a class="text-white" routerLink="users">{{ 'DASHBOARD.HEADER.USERS' | translate }}</a>
       </li>
       <li>
-        <button class="text-white cursor-pointer" (click)="logout()">Log out</button>
+        <button class="text-white cursor-pointer" (click)="logout()">
+          {{ 'DASHBOARD.LOGOUT' | translate }}
+        </button>
       </li>
     </ul>
   </nav>
 </app-header>
 
-<main class="mx-auto max-w-7xl py-8">
-  <router-outlet></router-outlet>
+<main class="min-h-screen bg-slate-50 py-8 px-4">
+  <div class="mx-auto max-w-7xl">
+    <router-outlet></router-outlet>
+  </div>
 </main>
