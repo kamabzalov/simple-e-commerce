@@ -1,0 +1,39 @@
+<table class="border-collapse w-full border border-gray-400">
+  <thead>
+    @for (column of columns(); track column) {
+      <th class="border border-gray-300 p-4">{{ column | titlecase }}</th>
+    }
+    <th class="border border-gray-300 p-4">Actions</th>
+  </thead>
+  <tbody>
+    @for (row of data(); track row) {
+      <tr>
+        @for (col of columns(); track col) {
+          @if (col === 'price') {
+            <td class="border border-gray-300 p-4 text-center">
+              {{ $any(row[col]) | currency: 'USD' }}
+            </td>
+          } @else if (col === 'date') {
+            <td class="border border-gray-300 p-4 text-center">{{ $any(row[col]) | date }}</td>
+          } @else {
+            <td class="border border-gray-300 p-4 text-center">{{ row[col] }}</td>
+          }
+        }
+        <td class="text-center border border-gray-300 p-4">
+          <button
+            (click)="emitDelete(row.id)"
+            class="bg-red-500 text-white rounded p-1 mb-2 cursor-pointer">
+            Delete
+          </button>
+          <p>
+            <a
+              class="inline-block bg-blue-500 text-white rounded p-1 cursor-pointer"
+              [routerLink]="[entityName(), row.id]"
+              >View</a
+            >
+          </p>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

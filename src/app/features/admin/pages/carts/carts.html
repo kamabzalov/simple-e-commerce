@@ -1,0 +1,10 @@
+<h1 class="text-2xl font-bold mb-4">Carts</h1>
+
+@if (items.isLoading()) {
+  <p>Loading...</p>
+} @else if (items.error() || !items.hasValue() || !items.value()?.length) {
+  <app-alert alertText="HOME.NO_PRODUCTS"></app-alert>
+} @else {
+  @let carts = items.value();
+  <app-table [columns]="columns" [data]="carts" entityName="cart"></app-table>
+}

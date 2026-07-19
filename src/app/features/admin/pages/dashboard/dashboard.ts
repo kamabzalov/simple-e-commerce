@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, injectAsync } from '@angular/core';
 import { Header } from '../../../../shared/header/header';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -9,4 +9,12 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
-export class Dashboard {}
+export class Dashboard {
+  private router = injectAsync(() => import('@angular/router').then(s => s.Router));
+
+  protected async logout() {
+    localStorage.removeItem('token');
+    const router = await this.router();
+    await router.navigate(['/']);
+  }
+}
