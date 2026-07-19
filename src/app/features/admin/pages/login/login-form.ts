@@ -19,7 +19,9 @@ export class LoginForm {
     password: '',
   });
 
-  private readonly authService = injectAsync(() => import('../../services/auth').then(s => s.Auth));
+  private readonly authService = injectAsync(() =>
+    import('../../services/auth/auth').then(s => s.Auth)
+  );
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private router = inject(Router);
 
