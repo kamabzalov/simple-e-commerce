@@ -1,7 +1,7 @@
-<h1 class="text-2xl font-bold mb-4">{{'CARTS.HEADER' | translate}}</h1>
+<h1 class="text-2xl font-bold mb-4">{{ 'CARTS.HEADER' | translate }}</h1>
 
 @if (items.isLoading()) {
-  <p>{{'CARTS.LOADING' | translate}}</p>
+  <p>{{ 'CARTS.LOADING' | translate }}</p>
 } @else if (items.error() || !items.hasValue() || !items.value()?.length) {
   <app-alert alertText="CARTS.NO_CARTS"></app-alert>
 } @else {
