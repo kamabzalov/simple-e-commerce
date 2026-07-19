@@ -12,4 +12,17 @@ export class ProductService {
   public getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiUrl}/products`);
   }
+
+  public getById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/products/${id}`);
+  }
+
+  public update(product: Product): Observable<Product> {
+    const { id, ...rest } = product;
+    return this.http.put<Product>(`${this.apiUrl}/products/${id}`, rest);
+  }
+
+  public delete(id: number): Observable<Product> {
+    return this.http.delete<Product>(`${this.apiUrl}/products/${id}`);
+  }
 }

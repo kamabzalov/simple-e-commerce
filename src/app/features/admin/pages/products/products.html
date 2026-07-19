@@ -6,5 +6,9 @@
   <app-alert alertText="PRODUCTS.NO_PRODUCTS"></app-alert>
 } @else {
   @let products = items.value();
-  <app-table [columns]="columns" [data]="products" entityName="product"></app-table>
+  <app-table
+    (delete)="deleteProduct($event)"
+    [columns]="columns"
+    [data]="products"
+    entityName="products"></app-table>
 }
