@@ -4,12 +4,12 @@ import { Table } from '../../../../shared/table/table';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { Cart } from '../../../../core/models/cart';
 import { CartService } from '../../services/cart/cart';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-carts',
-  imports: [Alert, Table],
+  imports: [Alert, Table, TranslatePipe],
   templateUrl: './carts.html',
-  styleUrl: './carts.css',
 })
 export class Carts {
   protected columns: (keyof Cart & string)[] = ['date'];

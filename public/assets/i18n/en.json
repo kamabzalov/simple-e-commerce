@@ -23,6 +23,28 @@
       "PRODUCTS": "Products",
       "CARTS": "Carts",
       "USERS": "Users"
-    }
+    },
+    "LOGOUT": "Log out"
+  },
+  "LOGIN-FORM": {
+    "HEADER": "Login",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "BUTTON": "Login"
+  },
+  "CARTS": {
+    "HEADER": "Carts",
+    "LOADING": "Loading...",
+    "NO_CARTS": "No carts found"
+  },
+  "PRODUCTS": {
+    "HEADER": "Products",
+    "LOADING": "Loading...",
+    "NO_PRODUCTS": "No products found"
+  },
+  "USERS": {
+    "HEADER": "Users",
+    "LOADING": "Loading...",
+    "NO_USERS": "No users found"
   }
 }

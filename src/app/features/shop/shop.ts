@@ -7,6 +7,5 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-shop',
   imports: [RouterOutlet, Header, RouterLink, TranslatePipe],
   templateUrl: './shop.html',
-  styleUrl: './shop.css',
 })
 export class Shop {}

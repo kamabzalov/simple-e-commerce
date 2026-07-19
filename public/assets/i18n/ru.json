@@ -23,6 +23,23 @@
       "PRODUCTS": "Продукты",
       "CARTS": "Корзины",
       "USERS": "Пользователи"
-    }
+    },
+    "LOGOUT": "Выйти"
+  },
+  "LOGIN-FORM": {
+    "HEADER": "Войти",
+    "USERNAME": "Имя пользователя",
+    "PASSWORD": "Пароль",
+    "BUTTON": "Войти"
+  },
+  "CARTS": {
+    "HEADER": "Корзины",
+    "LOADING": "Загрузка...",
+    "NO_CARTS": "Корзин не найдено"
+  },
+  "PRODUCTS": {
+    "HEADER": "Продукты",
+    "LOADING": "Загрузка...",
+    "NO_PRODUCTS": "Нет товаров"
   }
 }

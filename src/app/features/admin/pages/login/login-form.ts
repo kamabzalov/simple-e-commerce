@@ -6,12 +6,12 @@ import { firstValueFrom } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-form',
-  imports: [FormField, FormsModule, FormRoot],
+  imports: [FormField, FormsModule, FormRoot, TranslatePipe],
   templateUrl: './login-form.html',
-  styleUrl: './login-form.css',
 })
 export class LoginForm {
   private readonly loginModel = signal<Login>({

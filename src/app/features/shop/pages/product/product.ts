@@ -13,7 +13,6 @@ import { API_URL } from '../../../../app.config';
 @Component({
   selector: 'app-product',
   templateUrl: './product.html',
-  styleUrl: './product.css',
   imports: [CurrencyPipe, TranslatePipe, Alert],
 })
 export class ProductDetails {
