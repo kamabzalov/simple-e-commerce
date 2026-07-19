@@ -4,7 +4,7 @@ export interface User {
   email: string;
   username: string;
   name: FullName;
-  fullName: string;
+  fullName?: string;
   phone: string;
 }
 

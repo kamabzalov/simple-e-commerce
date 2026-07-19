@@ -12,7 +12,7 @@ import { CartService } from '../../services/cart/cart';
   styleUrl: './carts.css',
 })
 export class Carts {
-  protected columns: (keyof Cart)[] = ['date'];
+  protected columns: (keyof Cart & string)[] = ['date'];
 
   private cartService = inject(CartService);
 

@@ -13,7 +13,7 @@ import { map } from 'rxjs';
   styleUrl: './users.css',
 })
 export class Users {
-  protected columns: (keyof User)[] = ['fullName', 'email', 'phone'];
+  protected columns: (keyof User & string)[] = ['fullName', 'email', 'phone'];
 
   private usersService = inject(UserService);
 

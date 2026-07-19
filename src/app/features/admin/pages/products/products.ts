@@ -12,7 +12,7 @@ import { Alert } from '../../../../shared/alert/alert';
   styleUrl: './products.css',
 })
 export class Products {
-  protected columns: (keyof Product)[] = ['title', 'price', 'category'];
+  protected columns: (keyof Product & string)[] = ['title', 'price', 'category'];
 
   private productsService = inject(ProductService);
 
