@@ -1,11 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ResourceRef } from '@angular/core';
 import { Product } from '../../../../core/models/product';
-import { httpResource, HttpResourceRef } from '@angular/common/http';
 import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
 import { Alert } from '../../../../shared/alert/alert';
-import { API_URL } from '../../../../app.config';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { ProductService } from '../../../../core/services/product';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +13,12 @@ import { API_URL } from '../../../../app.config';
   templateUrl: './home.html',
 })
 export class Home {
-  protected products: HttpResourceRef<Product[] | undefined>;
-  private apiUrl = inject(API_URL);
+  private productsService = inject(ProductService);
 
-  constructor() {
-    this.products = httpResource<Product[] | undefined>(() => `${this.apiUrl}/products`);
-  }
+  protected products: ResourceRef<Product[] | undefined> = rxResource<
+    Product[] | undefined,
+    unknown
+  >({
+    stream: () => this.productsService.getAll(),
+  });
 }

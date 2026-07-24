@@ -7,11 +7,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import { Auth } from '../../services/auth/auth';
 
 @Component({
   selector: 'app-login-form',
   imports: [FormField, FormsModule, FormRoot, TranslatePipe],
   templateUrl: './login-form.html',
+  providers: [Auth],
 })
 export class LoginForm {
   private readonly loginModel = signal<Login>({
