@@ -3,12 +3,10 @@ import { ProductService } from '../../../../core/services/product';
 import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, of } from 'rxjs';
-import { Product } from '../../../../core/models/product';
+import { ProductForm } from '../../../../core/models/product';
 import { form, FormField } from '@angular/forms/signals';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Alert } from '../../../../shared/alert/alert';
-
-export type ProductForm = Pick<Product, 'id' | 'title' | 'description' | 'price'>;
 
 @Component({
   selector: 'app-product',
