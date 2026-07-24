@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_URL } from '../../app.config';
 import { Product } from '../models/product';
+import { ProductForm } from '../../features/admin/pages/product/product';
 
 @Service()
 export class ProductService {
@@ -17,7 +18,11 @@ export class ProductService {
     return this.http.get<Product>(`${this.apiUrl}/products/${id}`);
   }
 
-  public update(product: Product): Observable<Product> {
+  public add(product: Omit<ProductForm, 'id'>): Observable<Product> {
+    return this.http.post<Product>(`${this.apiUrl}/products`, product);
+  }
+
+  public update(product: ProductForm): Observable<Product> {
     const { id, ...rest } = product;
     return this.http.put<Product>(`${this.apiUrl}/products/${id}`, rest);
   }

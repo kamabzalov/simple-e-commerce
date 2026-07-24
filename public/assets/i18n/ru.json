@@ -40,11 +40,21 @@
   "PRODUCTS": {
     "HEADER": "Продукты",
     "LOADING": "Загрузка...",
-    "NO_PRODUCTS": "Нет товаров"
+    "NO_PRODUCTS": "Нет товаров",
+    "ADD_PRODUCT": "Добавить продукт"
   },
   "USERS": {
     "HEADER": "Пользователи",
     "LOADING": "Загрузка...",
     "NO_USERS": "Пользователи не найдены"
+  },
+  "ADMIN_PRODUCT_PAGE": {
+    "ADD_PRODUCT": "Новый продукт",
+    "NO_PRODUCT": "Ошибка",
+    "PRODUCT_TITLE": "Название",
+    "PRODUCT_PRICE": "Цена",
+    "PRODUCT_DESCRIPTION": "Описание",
+    "SAVE_BUTTON": "Сохранить",
+    "ALERT_MESSAGE": "Продукт сохранен"
   }
 }

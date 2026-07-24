@@ -1,14 +1,13 @@
-import { Component, effect, inject } from '@angular/core';
-import { httpResource, HttpResourceRef } from '@angular/common/http';
+import { Component, effect, inject, ResourceRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../../../core/models/product';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
+import { rxResource, toSignal } from '@angular/core/rxjs-interop';
+import { map, of } from 'rxjs';
 import { CurrencyPipe } from '@angular/common';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Alert } from '../../../../shared/alert/alert';
 import { Meta, Title } from '@angular/platform-browser';
-import { API_URL } from '../../../../app.config';
+import { ProductService } from '../../../../core/services/product';
 
 @Component({
   selector: 'app-product',
@@ -21,19 +20,18 @@ export class ProductDetails {
   private meta = inject(Meta);
   private translateService = inject(TranslateService);
   private titlePrefix = toSignal(this.translateService.stream('PRODUCT.BUY'));
-  private readonly apiUrl = inject(API_URL);
+  private productService = inject(ProductService);
 
   protected productId = toSignal(this.route.paramMap.pipe(map(params => Number(params.get('id')))));
-  protected product: HttpResourceRef<Product | undefined> = httpResource<Product | undefined>(
-    () => {
+  protected product: ResourceRef<Product | undefined> = rxResource<Product | undefined, unknown>({
+    stream: () => {
       const productId = this.productId();
-
       if (!productId) {
-        return undefined;
+        return of(undefined);
       }
-      return `${this.apiUrl}/products/${productId}`;
-    }
-  );
+      return this.productService.getById(productId);
+    },
+  });
 
   constructor() {
     effect(() => {

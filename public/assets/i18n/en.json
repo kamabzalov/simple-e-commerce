@@ -40,11 +40,21 @@
   "PRODUCTS": {
     "HEADER": "Products",
     "LOADING": "Loading...",
-    "NO_PRODUCTS": "No products found"
+    "NO_PRODUCTS": "No products found",
+    "ADD_PRODUCT": "Add product"
   },
   "USERS": {
     "HEADER": "Users",
     "LOADING": "Loading...",
     "NO_USERS": "No users found"
+  },
+  "ADMIN_PRODUCT_PAGE": {
+    "ADD_PRODUCT": "Add product",
+    "NO_PRODUCT": "Error",
+    "PRODUCT_TITLE": "Title",
+    "PRODUCT_PRICE": "Price",
+    "PRODUCT_DESCRIPTION": "Description",
+    "SAVE_BUTTON": "Save",
+    "ALERT_MESSAGE": "Product saved successfully"
   }
 }

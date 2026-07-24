@@ -1,1 +1,56 @@
-<p>product works!</p>
+<div class="mb-8">
+  <h1 class="text-3xl font-bold tracking-tight text-slate-900">
+    @if (productFormModel().id) {
+      {{ productFormModel().title }}
+    }
+
+    @if (isNew()) {
+      {{ 'ADMIN_PRODUCT_PAGE.ADD_PRODUCT' | translate }}
+    }
+  </h1>
+</div>
+
+@if (!isNew() && !productFormModel().id) {
+  <app-alert alertText="ADMIN_PRODUCT_PAGE.NO_PRODUCT"></app-alert>
+} @else {
+  <article class="shadow-sm rounded-2xl bg-white duration-300 p-8">
+    <form (submit)="saveProduct($event)">
+      <div class="mb-4">
+        <label class="mb-2 block" for="title">{{
+          'ADMIN_PRODUCT_PAGE.PRODUCT_TITLE' | translate
+        }}</label>
+        <input
+          [formField]="productForm.title"
+          class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
+          type="text"
+          id="title" />
+      </div>
+      <div class="mb-4">
+        <label class="mb-2 block" for="title">{{
+          'ADMIN_PRODUCT_PAGE.PRODUCT_PRICE' | translate
+        }}</label>
+        <input
+          [formField]="productForm.price"
+          class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
+          type="number"
+          step="0.01"
+          id="price" />
+      </div>
+      <div class="mb-4">
+        <label class="mb-2 block" for="title">{{
+          'ADMIN_PRODUCT_PAGE.PRODUCT_DESCRIPTION' | translate
+        }}</label>
+        <textarea
+          [formField]="productForm.description"
+          class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
+          id="description"></textarea>
+      </div>
+      <div class="flex justify-end">
+        <button
+          class="bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-white p-2 rounded-sm disabled:bg-slate-400">
+          {{ 'ADMIN_PRODUCT_PAGE.SAVE_BUTTON' | translate }}
+        </button>
+      </div>
+    </form>
+  </article>
+}

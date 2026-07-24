@@ -1,14 +1,15 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, inject, ResourceRef } from '@angular/core';
 import { Table } from '../../../../shared/table/table';
 import { rxResource, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ProductService } from '../../../../core/services/product';
 import { Product } from '../../../../core/models/product';
 import { Alert } from '../../../../shared/alert/alert';
 import { TranslatePipe } from '@ngx-translate/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products',
-  imports: [Table, Alert, TranslatePipe],
+  imports: [Table, Alert, TranslatePipe, RouterLink],
   templateUrl: './products.html',
 })
 export class Products {
@@ -17,7 +18,7 @@ export class Products {
 
   protected columns: (keyof Product & string)[] = ['title', 'price', 'category'];
 
-  protected items = rxResource<Product[] | undefined, unknown>({
+  protected items: ResourceRef<Product[] | undefined> = rxResource<Product[] | undefined, unknown>({
     stream: () => this.productsService.getAll(),
   });
 
