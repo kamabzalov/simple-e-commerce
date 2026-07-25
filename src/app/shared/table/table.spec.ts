@@ -2,9 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Table } from './table';
 
+interface Data {
+  id: number;
+}
+
 describe('Table', () => {
-  let component: Table;
-  let fixture: ComponentFixture<Table>;
+  let component: Table<Data>;
+  let fixture: ComponentFixture<Table<Data>>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
