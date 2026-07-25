@@ -25,13 +25,15 @@
             class="bg-red-500 text-white rounded p-1 mb-2 cursor-pointer">
             Delete
           </button>
-          <p>
-            <a
-              class="inline-block bg-blue-500 text-white rounded p-1 cursor-pointer"
-              [routerLink]="[entityName(), row.id]"
+          @if(viewDetailsAvailable()) {
+            <p>
+              <a
+                class="inline-block bg-blue-500 text-white rounded p-1 cursor-pointer"
+                [routerLink]="[row.id]"
               >View</a
-            >
-          </p>
+              >
+            </p>
+          }
         </td>
       </tr>
     }

@@ -2,7 +2,7 @@ import { inject, Service } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../../../../app.config';
 import { Observable } from 'rxjs';
-import { User } from '../../../../core/models/user';
+import { User, UserForm } from '../../../../core/models/user';
 
 @Service({ autoProvided: false })
 export class UserService {
@@ -17,9 +17,14 @@ export class UserService {
     return this.http.get<User>(`${this.apiUrl}/users/${id}`);
   }
 
-  public update(user: User): Observable<User> {
+  public update(user: UserForm): Observable<User> {
     const { id, ...rest } = user;
     return this.http.put<User>(`${this.apiUrl}/users/${id}`, rest);
+  }
+
+  public add(user: UserForm): Observable<User> {
+    const { id, ...userData } = user;
+    return this.http.post<User>(`${this.apiUrl}/users`, userData);
   }
 
   public delete(id: number): Observable<User> {

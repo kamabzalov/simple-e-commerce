@@ -1,1 +1,77 @@
-<p>user works!</p>
+<div class="mb-8">
+  <h1 class="text-3xl font-bold tracking-tight text-slate-900">
+    @if (userFormModel().id) {
+      @let userName = userFormModel().name;
+      {{ userName.firstname }} {{ userName.lastname }}
+    }
+
+    @if (isNew()) {
+      {{ 'ADMIN_USER_PAGE.ADD_USER' | translate }}
+    }
+  </h1>
+</div>
+
+@if (!isNew() && !userFormModel().id && !user.isLoading()) {
+  <app-alert alertText="ADMIN_USER_PAGE.NO_USER"></app-alert>
+} @else {
+  <article class="shadow-sm rounded-2xl bg-white duration-300 p-8">
+    <form (submit)="saveUser($event)">
+      <div class="mb-4">
+        <label class="mb-2 block" for="username">{{
+          'ADMIN_USER_PAGE.USERNAME' | translate
+        }}</label>
+        <input
+          [formField]="userForm.username"
+          class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
+          type="text"
+          id="username" />
+      </div>
+      <div class="mb-4">
+        <label class="mb-2 block" for="email">{{
+          'ADMIN_USER_PAGE.EMAIL' | translate
+        }}</label>
+        <input
+          [formField]="userForm.email"
+          class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
+          type="email"
+          id="email" />
+      </div>
+      <div class="mb-4">
+        <label class="mb-2 block" for="firstName">{{
+            'ADMIN_USER_PAGE.FIRST_NAME' | translate
+          }}</label>
+        <input
+          [formField]="userForm.name.firstname"
+          class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
+          type="text"
+          id="firstName" />
+      </div>
+      <div class="mb-4">
+        <label class="mb-2 block" for="lastName">{{
+            'ADMIN_USER_PAGE.LAST_NAME' | translate
+          }}</label>
+        <input
+          [formField]="userForm.name.lastname"
+          class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
+          type="text"
+          id="lastName" />
+      </div>
+      <div class="mb-4">
+        <label class="mb-2 block" for="phone">{{
+          'ADMIN_USER_PAGE.PHONE' | translate
+        }}</label>
+        <input
+          [formField]="userForm.phone"
+          class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
+          type="text"
+          id="phone" />
+      </div>
+      <div class="flex justify-end">
+        <button
+          class="bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-white p-2 rounded-sm disabled:bg-slate-400">
+          {{ 'ADMIN_USER_PAGE.SAVE_BUTTON' | translate }}
+        </button>
+      </div>
+    </form>
+  </article>
+}

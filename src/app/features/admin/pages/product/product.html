@@ -10,7 +10,7 @@
   </h1>
 </div>
 
-@if (!isNew() && !productFormModel().id) {
+@if (!isNew() && !productFormModel().id && !product.isLoading()) {
   <app-alert alertText="ADMIN_PRODUCT_PAGE.NO_PRODUCT"></app-alert>
 } @else {
   <article class="shadow-sm rounded-2xl bg-white duration-300 p-8">

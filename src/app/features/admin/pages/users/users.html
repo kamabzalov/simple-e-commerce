@@ -1,14 +1,21 @@
+<div class="flex justify-between items-center mb-4">
 <h1 class="text-2xl font-bold mb-4">{{ 'USERS.HEADER' | translate }}</h1>
+  <a
+    class="bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-white p-2 rounded-sm"
+    [routerLink]="['add-user']"
+  >{{ 'USERS.ADD_USER' | translate }}</a
+  >
+</div>
 
 @if (items.isLoading()) {
   <p>{{ 'USERS.LOADING' | translate }}</p>
 } @else if (items.error() || !items.hasValue() || !items.value()?.length) {
   <app-alert alertText="USERS.NO_USERS"></app-alert>
 } @else {
-  @let products = items.value();
+  @let users = items.value();
   <app-table
     (delete)="deleteUser($event)"
     [columns]="columns"
-    [data]="products"
+    [data]="users"
     entityName="users"></app-table>
 }

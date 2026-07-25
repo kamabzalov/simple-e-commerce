@@ -23,3 +23,5 @@ interface Address {
   number: number;
   zipcode: string;
 }
+
+export type UserForm = Pick<User, 'id' | 'email' | 'username' | 'phone' | 'name'>;
