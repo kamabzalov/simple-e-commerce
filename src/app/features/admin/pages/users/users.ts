@@ -6,10 +6,11 @@ import { UserService } from '../../services/user/user';
 import { User } from '../../../../core/models/user';
 import { map } from 'rxjs';
 import { TranslatePipe } from '@ngx-translate/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-users',
-  imports: [Alert, Table, TranslatePipe],
+  imports: [Alert, Table, TranslatePipe, RouterLink],
   templateUrl: './users.html',
   providers: [UserService],
 })

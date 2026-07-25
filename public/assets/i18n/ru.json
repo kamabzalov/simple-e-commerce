@@ -46,7 +46,8 @@
   "USERS": {
     "HEADER": "Пользователи",
     "LOADING": "Загрузка...",
-    "NO_USERS": "Пользователи не найдены"
+    "NO_USERS": "Пользователи не найдены",
+    "ADD_USER": "Добавить пользователя"
   },
   "ADMIN_PRODUCT_PAGE": {
     "ADD_PRODUCT": "Новый продукт",
@@ -56,5 +57,16 @@
     "PRODUCT_DESCRIPTION": "Описание",
     "SAVE_BUTTON": "Сохранить",
     "ALERT_MESSAGE": "Продукт сохранен"
+  },
+  "ADMIN_USER_PAGE": {
+    "ADD_USER": "Добавить пользователя",
+    "NO_USER": "Ошибка",
+    "USERNAME": "Имя пользователя",
+    "EMAIL": "Email",
+    "FIRST_NAME": "Имя",
+    "LAST_NAME": "Фамилия",
+    "PHONE": "Телефон",
+    "SAVE_BUTTON": "Сохранить",
+    "ALERT_MESSAGE": "Пользователь сохранен"
   }
 }

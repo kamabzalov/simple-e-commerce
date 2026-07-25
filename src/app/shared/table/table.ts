@@ -11,7 +11,8 @@ import { RouterLink } from '@angular/router';
 export class Table<T extends { id: number }> {
   public columns = input.required<(keyof T & string)[]>();
   public data = input.required<T[]>();
-  public entityName = input.required<string>();
+  public entityName = input<string>();
+  public viewDetailsAvailable = input<boolean>(true);
 
   public delete = output<number>();
 
