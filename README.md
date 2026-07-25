@@ -84,9 +84,6 @@ ng generate component feature/my-component
 # Generate a new service
 ng generate service shared/services/my-service
 
-# Generate a new module
-ng generate module feature/my-module
-
 # View all available schematics
 ng generate --help
 ```
@@ -104,44 +101,9 @@ npm run lint:fix
 npm run format
 ```
 
-## 📁 Project Structure
-
-```
-simple-e-commerce/
-├── src/
-│   ├── app/
-│   │   ├── components/        # Reusable components
-│   │   ├── pages/            # Application pages
-│   │   ├── services/         # HTTP services and business logic
-│   │   ├── models/           # TypeScript interfaces and types
-│   │   └── app.component.ts  # Root component
-│   ├── assets/               # Images, icons, and static files
-│   ├── styles/               # Global styles and Tailwind configuration
-│   └── main.ts               # Application entry point
-├── dist/                      # Compiled code (build output)
-├── package.json               # Project dependencies
-├── angular.json               # Angular configuration
-├── tsconfig.json              # TypeScript configuration
-├── tailwind.config.ts         # Tailwind CSS configuration
-├── eslint.config.js           # ESLint configuration
-├── .prettierrc                 # Prettier configuration
-└── README.md                  # This file
-```
-
 ## 🔌 API
 
 This application uses the **Fake Store API** to fetch product, category, and order data.
-
-### Main Endpoints:
-
-```
-GET  /products              # Get all products
-GET  /products/:id          # Get a specific product
-GET  /categories            # Get all categories
-GET  /products/category/:category  # Get products by category
-POST /carts                 # Create a cart
-GET  /carts/:id            # Get a specific cart
-```
 
 📖 Documentation: https://fakestoreapi.com/docs
 
@@ -218,31 +180,6 @@ ng test --watch
 ng test --code-coverage
 ```
 
-### Writing Tests
-
-```typescript
-// example.service.spec.ts
-import { TestBed } from '@angular/core/testing';
-import { ExampleService } from './example.service';
-
-describe('ExampleService', () => {
-  let service: ExampleService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ExampleService);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
-  it('should return products', () => {
-    expect(service.getProducts()).toBeDefined();
-  });
-});
-```
-
 ### E2E Tests
 
 ```bash
@@ -310,31 +247,3 @@ npm run serve:ssr:e-commerce
 - 📖 [RxJS Documentation](https://rxjs.dev/guide/overview)
 - 🧪 [Vitest Documentation](https://vitest.dev/)
 - 🔌 [Fake Store API](https://fakestoreapi.com/docs)
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. **Fork** the repository
-2. **Create** a new branch for your feature (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
-
-## 📝 License
-
-This project is open for use. Created for educational purposes.
-
-## ❓ Support
-
-If you have any questions or issues:
-
-1. 📖 Check the [Angular Documentation](https://angular.dev/)
-2. 🔍 Search existing [issues](https://github.com/kamabzalov/simple-e-commerce/issues)
-3. 💬 [Create a new issue](https://github.com/kamabzalov/simple-e-commerce/issues/new)
-
----
-
-**Built with ❤️ for learning Angular and modern web technologies**
-
-Last updated: 2024
