@@ -24,6 +24,7 @@ export class ProductDetails {
   private alertMessage = toSignal(this.translateService.stream('ADMIN_PRODUCT_PAGE.ALERT_MESSAGE'));
 
   protected product = rxResource({
+    params: () => this.productId(),
     stream: () => {
       const productId = this.productId();
       if (!productId || isNaN(productId)) {

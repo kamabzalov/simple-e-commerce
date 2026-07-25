@@ -22,9 +22,10 @@ export class UserDetails {
 
   protected userId = toSignal(this.route.paramMap.pipe(map(params => Number(params.get('id')))));
   protected isNew = signal<boolean>(false);
-  private alertMessage = toSignal(this.translateService.stream('ADMIN_PRODUCT_PAGE.ALERT_MESSAGE'));
+  private alertMessage = toSignal(this.translateService.stream('ADMIN_USER_PAGE.ALERT_MESSAGE'));
 
   protected user = rxResource({
+    params: () => this.userId(),
     stream: () => {
       const userId = this.userId();
       if (!userId || isNaN(userId)) {
