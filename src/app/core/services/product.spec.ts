@@ -1,16 +1,82 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ProductService } from './product';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+  TestRequest,
+} from '@angular/common/http/testing';
+import { API_URL } from '../../app.config';
+import { Product } from '../models/product';
 
 describe('ProductService', () => {
   let service: ProductService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        provideHttpClientTesting(),
+        { provide: API_URL, useValue: 'https://fakestoreapi.com' },
+      ],
+    });
     service = TestBed.inject(ProductService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should return collection of products', () => {
+    const mockProducts: Partial<Product>[] = [
+      {
+        id: 1,
+        title: 'Product 1',
+        price: 10.99,
+        description: 'Description of Product 1',
+        category: 'Category 1',
+        image: 'https://example.com/product1.jpg',
+      },
+      {
+        id: 2,
+        title: 'Product 2',
+        price: 20.99,
+        description: 'Description of Product 2',
+        category: 'Category 1',
+        image: 'https://example.com/product1.jpg',
+      },
+    ];
+
+    service.getAll().subscribe(products => {
+      expect(JSON.stringify(mockProducts)).toEqual(JSON.stringify(products));
+    });
+
+    const req: TestRequest = httpMock.expectOne(`${service['apiUrl']}/products`);
+
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockProducts);
+    httpMock.verify();
+  });
+
+  it('should return product by id', () => {
+    const mockProduct: Partial<Product> = {
+      id: 1,
+      title: 'Product 1',
+      price: 10.99,
+      description: 'Description of Product 1',
+      category: 'Category 1',
+      image: 'https://example.com/product1.jpg',
+    };
+
+    service.getById(1).subscribe(product => {
+      expect(mockProduct.id).toEqual(product?.id);
+    });
+
+    const req = httpMock.expectOne(`${service['apiUrl']}/products/1`);
+
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockProduct);
+    httpMock.verify();
   });
 });
