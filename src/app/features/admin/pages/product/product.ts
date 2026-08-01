@@ -4,7 +4,7 @@ import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, of } from 'rxjs';
 import { ProductForm } from '../../../../core/models/product';
-import { form, FormField } from '@angular/forms/signals';
+import { form, FormField, required } from '@angular/forms/signals';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Alert } from '../../../../shared/alert/alert';
 
@@ -41,7 +41,11 @@ export class ProductDetails {
     description: '',
   });
 
-  protected productForm = form(this.productFormModel);
+  protected productForm = form(this.productFormModel, schemaPath => {
+    required(schemaPath.title);
+    required(schemaPath.description);
+    required(schemaPath.price);
+  });
 
   constructor() {
     this.isNew.set(this.route.snapshot.data['isNew']);

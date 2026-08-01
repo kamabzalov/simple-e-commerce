@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { map, of } from 'rxjs';
 import { UserService } from '../../services/user/user';
-import { form, FormField } from '@angular/forms/signals';
+import { form, FormField, required } from '@angular/forms/signals';
 import { UserForm } from '../../../../core/models/user';
 
 @Component({
@@ -43,7 +43,12 @@ export class UserDetails {
     name: { firstname: '', lastname: '' },
   });
 
-  protected userForm = form(this.userFormModel);
+  protected userForm = form(this.userFormModel, schemaPath => {
+    required(schemaPath.name.firstname);
+    required(schemaPath.name.lastname);
+    required(schemaPath.email);
+    required(schemaPath.username);
+  });
 
   constructor() {
     this.isNew.set(this.route.snapshot.data['isNew']);

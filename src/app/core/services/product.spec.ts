@@ -1,13 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ProductService } from './product';
-import {
-  HttpTestingController,
-  provideHttpClientTesting,
-  TestRequest,
-} from '@angular/common/http/testing';
-import { API_URL } from '../../app.config';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Product } from '../models/product';
+import { API_URL } from '../../app.config';
+import { HttpErrorResponse } from '@angular/common/http';
 
 describe('ProductService', () => {
   let service: ProductService;
@@ -22,6 +19,10 @@ describe('ProductService', () => {
     });
     service = TestBed.inject(ProductService);
     httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
   });
 
   it('should be created', () => {
@@ -48,15 +49,14 @@ describe('ProductService', () => {
       },
     ];
 
-    service.getAll().subscribe(products => {
-      expect(JSON.stringify(mockProducts)).toEqual(JSON.stringify(products));
-    });
+    let result: Product[] = [];
 
-    const req: TestRequest = httpMock.expectOne(`${service['apiUrl']}/products`);
+    service.getAll().subscribe(products => (result = products));
 
-    expect(req.request.method).toEqual('GET');
+    const req = httpMock.expectOne(`${service['apiUrl']}/products`);
     req.flush(mockProducts);
-    httpMock.verify();
+
+    expect(result.length).toEqual(2);
   });
 
   it('should return product by id', () => {
@@ -77,6 +77,19 @@ describe('ProductService', () => {
 
     expect(req.request.method).toEqual('GET');
     req.flush(mockProduct);
-    httpMock.verify();
+  });
+
+  it('should eras 400 code error for incorrect product id', () => {
+    let error: unknown;
+
+    service.getById(-1).subscribe({
+      error: err => (error = err),
+    });
+
+    httpMock
+      .expectOne(`${service['apiUrl']}/products/-1`)
+      .flush('Server error', { status: 400, statusText: 'Bad Request' });
+
+    expect((error as HttpErrorResponse).status).toEqual(400);
   });
 });

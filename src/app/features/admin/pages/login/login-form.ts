@@ -1,10 +1,9 @@
-import { Component, inject, injectAsync, PLATFORM_ID, signal } from '@angular/core';
+import { Component, inject, injectAsync, signal } from '@angular/core';
 import { Login } from '../../../../core/models/auth';
 import { form, FormField, FormRoot, required, validate } from '@angular/forms/signals';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Auth } from '../../services/auth/auth';
@@ -24,7 +23,6 @@ export class LoginForm {
   private readonly authService = injectAsync(() =>
     import('../../services/auth/auth').then(s => s.Auth)
   );
-  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private router = inject(Router);
 
   protected form = form(
@@ -58,7 +56,7 @@ export class LoginForm {
           const authService = await this.authService();
           try {
             const result = await firstValueFrom(authService.login(username, password));
-            if (this.isBrowser && result.token) {
+            if (result.token) {
               localStorage.setItem('token', result.token);
               await this.router.navigate(['/admin/dashboard']);
             }
