@@ -21,6 +21,7 @@
         }
         <td class="text-center border border-gray-300 p-4">
           <button
+            data-testid="delete-button"
             (click)="emitDelete(row.id)"
             class="bg-red-500 text-white rounded p-1 mb-2 cursor-pointer">
             Delete
@@ -28,6 +29,7 @@
           @if(viewDetailsAvailable()) {
             <p>
               <a
+                data-testid="view-button"
                 class="inline-block bg-blue-500 text-white rounded p-1 cursor-pointer"
                 [routerLink]="[row.id]"
               >View</a
