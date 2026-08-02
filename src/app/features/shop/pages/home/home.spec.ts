@@ -5,7 +5,14 @@ import { ProductService } from '../../../../core/services/product';
 import { provideTranslateService } from '@ngx-translate/core';
 import { of, Subject, throwError } from 'rxjs';
 import { Product } from '../../../../core/models/product';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterTestingHarness } from '@angular/router/testing';
+
+@Component({
+  template: '<h1>MockProductComponent</h1>',
+})
+class MockProductComponent {}
 
 describe('Home', () => {
   let component: Home;
@@ -24,7 +31,10 @@ describe('Home', () => {
           },
         },
         provideTranslateService(),
-        provideRouter([]),
+        provideRouter([
+          { path: '', component: Home },
+          { path: 'products/:id', component: MockProductComponent }
+        ]),
       ],
     }).compileComponents();
 
@@ -75,6 +85,46 @@ describe('Home', () => {
     await fixture.whenStable();
 
     expect(component['products'].value()).toEqual(mockProducts);
+  });
+
+  it('should redirect to product details page', async () => {
+    const mockProducts: Product[] = [
+      {
+        id: 1,
+        title: 'Product 1',
+        price: 10,
+        description: 'desc',
+        category: 'cat',
+        image: 'https://example.com/1.jpg',
+        rating: { rate: 4, count: 1 },
+      },
+      {
+        id: 2,
+        title: 'Product 2',
+        price: 20,
+        description: 'desc',
+        category: 'cat',
+        image: 'https://example.com/1.jpg',
+        rating: { rate: 4, count: 1 },
+      },
+    ];
+    mockProductsFn.mockReturnValue(of(mockProducts));
+
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/', Home);
+    await harness.fixture.whenStable();
+    harness.fixture.detectChanges();
+
+    const links = harness.routeNativeElement!.querySelectorAll('a');
+    expect(links.length).toEqual(2);
+
+    const router = TestBed.inject(Router);
+
+    links[0].click();
+    await harness.fixture.whenStable();
+
+    expect(router.url).toBe('/products/1');
+    expect(harness.routeNativeElement?.textContent).toContain('MockProductComponent');
   });
 
   it('should show loading text during loading http data', () => {

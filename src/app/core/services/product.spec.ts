@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ProductService } from './product';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { Product } from '../models/product';
+import { Product, ProductForm } from '../models/product';
 import { API_URL } from '../../app.config';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -76,6 +76,44 @@ describe('ProductService', () => {
     const req = httpMock.expectOne(`${service['apiUrl']}/products/1`);
 
     expect(req.request.method).toEqual('GET');
+    req.flush(mockProduct);
+  });
+
+  it('should delete product by id', () => {
+    const mockProduct: Partial<Product> = {
+      id: 1,
+      title: 'Product 1',
+      price: 10.99,
+      description: 'Description of Product 1',
+      category: 'Category 1',
+      image: 'https://example.com/product1.jpg',
+    };
+
+    service.delete(1).subscribe(product => {
+      expect(mockProduct.id).toEqual(product?.id);
+    });
+
+    const req = httpMock.expectOne(`${service['apiUrl']}/products/1`);
+
+    expect(req.request.method).toEqual('DELETE');
+    req.flush(mockProduct);
+  });
+
+  it('should update product by id', () =>  {
+    const mockProduct: ProductForm = {
+      id: 1,
+      title: 'Product title',
+      description: 'Product description',
+      price: 100,
+    };
+
+    service.update(mockProduct).subscribe(product => {
+      expect(product.id).toEqual(mockProduct.id);
+    });
+
+    const req = httpMock.expectOne(`${service['apiUrl']}/products/1`);
+
+    expect(req.request.method).toEqual('PUT');
     req.flush(mockProduct);
   });
 

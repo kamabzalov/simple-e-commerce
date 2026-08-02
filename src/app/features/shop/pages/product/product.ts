@@ -26,6 +26,7 @@ export class ProductDetails {
   protected product: ResourceRef<Product | undefined> = rxResource<Product | undefined, unknown>({
     stream: () => {
       const productId = this.productId();
+
       if (!productId) {
         return of(undefined);
       }
