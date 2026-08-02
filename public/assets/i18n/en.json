@@ -68,5 +68,9 @@
     "PHONE": "Phone",
     "SAVE_BUTTON": "Save",
     "ALERT_MESSAGE": "User saved successfully"
+  },
+  "TABLE": {
+    "VIEW": "View",
+    "DELETE": "Delete"
   }
 }

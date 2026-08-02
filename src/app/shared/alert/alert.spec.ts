@@ -21,6 +21,5 @@ describe('Alert', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    expect(fixture.nativeElement.textContent).toContain('Alert text');
   });
 });

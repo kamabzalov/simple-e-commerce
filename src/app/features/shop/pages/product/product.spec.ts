@@ -73,7 +73,10 @@ describe('ProductDetails', () => {
     mockProductService.getById.mockImplementation(() => of(mockProduct));
 
     const harness = await RouterTestingHarness.create();
-    const routeComponent = await harness.navigateByUrl(`/product/${mockProduct.id}`, ProductDetails);
+    const routeComponent = await harness.navigateByUrl(
+      `/product/${mockProduct.id}`,
+      ProductDetails
+    );
     await harness.fixture.whenStable();
 
     expect(routeComponent['product'].value()?.id).toEqual(mockProduct.id);

@@ -1,17 +1,17 @@
 import { Component, input, output } from '@angular/core';
 import { CurrencyPipe, DatePipe, TitleCasePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-table',
-  imports: [TitleCasePipe, CurrencyPipe, RouterLink, DatePipe],
+  imports: [TitleCasePipe, CurrencyPipe, RouterLink, DatePipe, TranslatePipe],
   templateUrl: './table.html',
   styleUrl: './table.css',
 })
 export class Table<T extends { id: number }> {
   public columns = input.required<(keyof T & string)[]>();
   public data = input.required<T[]>();
-  public entityName = input<string>();
   public viewDetailsAvailable = input<boolean>(true);
 
   public delete = output<number>();
