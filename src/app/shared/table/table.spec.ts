@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Table } from './table';
 import { provideRouter } from '@angular/router';
+import { provideTranslateService } from '@ngx-translate/core';
 
 interface Data {
   id: number;
@@ -14,7 +15,7 @@ describe('Table', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Table],
-      providers: [provideRouter([])],
+      providers: [provideRouter([]), provideTranslateService()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Table);
