@@ -1,8 +1,8 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, DestroyRef, effect, inject, signal } from '@angular/core';
 import { Alert } from '../../../../shared/alert/alert';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { rxResource, toSignal } from '@angular/core/rxjs-interop';
+import { rxResource, takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { map, of } from 'rxjs';
 import { UserService } from '../../services/user/user';
 import { form, FormField, required } from '@angular/forms/signals';
@@ -19,6 +19,7 @@ export class UserDetails {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private translateService = inject(TranslateService);
+  private destroyRef = inject(DestroyRef);
 
   protected userId = toSignal(this.route.paramMap.pipe(map(params => Number(params.get('id')))));
   protected isNew = signal<boolean>(false);
@@ -70,23 +71,29 @@ export class UserDetails {
     $event.preventDefault();
     const formData = this.userFormModel();
     if (formData.id) {
-      this.usersService.update(formData).subscribe({
-        next: user => {
-          if (Object.keys(user).length) {
-            alert(this.alertMessage());
-            this.router.navigate(['admin', 'dashboard', 'users']);
-          }
-        },
-      });
+      this.usersService
+        .update(formData)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: user => {
+            if (Object.keys(user).length) {
+              alert(this.alertMessage());
+              this.router.navigate(['admin', 'dashboard', 'users']);
+            }
+          },
+        });
     } else {
-      this.usersService.add(formData).subscribe({
-        next: user => {
-          if (Object.keys(user).length) {
-            alert(this.alertMessage());
-            this.router.navigate(['admin', 'dashboard', 'users']);
-          }
-        },
-      });
+      this.usersService
+        .add(formData)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: user => {
+            if (Object.keys(user).length) {
+              alert(this.alertMessage());
+              this.router.navigate(['admin', 'dashboard', 'users']);
+            }
+          },
+        });
     }
   }
 }

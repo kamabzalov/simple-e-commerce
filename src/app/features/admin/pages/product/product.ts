@@ -1,6 +1,6 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, DestroyRef, effect, inject, signal } from '@angular/core';
 import { ProductService } from '../../../../core/services/product';
-import { rxResource, toSignal } from '@angular/core/rxjs-interop';
+import { rxResource, takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, of } from 'rxjs';
 import { ProductForm } from '../../../../core/models/product';
@@ -18,6 +18,7 @@ export class ProductDetails {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private translateService = inject(TranslateService);
+  private destroyRef = inject(DestroyRef);
 
   protected productId = toSignal(this.route.paramMap.pipe(map(params => Number(params.get('id')))));
   protected isNew = signal<boolean>(false);
@@ -66,23 +67,29 @@ export class ProductDetails {
     $event.preventDefault();
     const formData = this.productFormModel();
     if (formData.id) {
-      this.productService.update(formData).subscribe({
-        next: product => {
-          if (product.id) {
-            alert(this.alertMessage());
-            this.router.navigate(['admin', 'dashboard']);
-          }
-        },
-      });
+      this.productService
+        .update(formData)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: product => {
+            if (product.id) {
+              alert(this.alertMessage());
+              this.router.navigate(['admin', 'dashboard']);
+            }
+          },
+        });
     } else {
-      this.productService.add(formData).subscribe({
-        next: product => {
-          if (product.id) {
-            alert(this.alertMessage());
-            this.router.navigate(['admin', 'dashboard']);
-          }
-        },
-      });
+      this.productService
+        .add(formData)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: product => {
+            if (product.id) {
+              alert(this.alertMessage());
+              this.router.navigate(['admin', 'dashboard']);
+            }
+          },
+        });
     }
   }
 }

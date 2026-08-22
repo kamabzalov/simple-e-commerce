@@ -1,10 +1,10 @@
 <main class="bg-slate-50 h-screen flex items-center justify-center">
-  <form class="shadow-sm bg-white p-8 rounded-lg" [formRoot]="form">
+  <form class="shadow-sm bg-white p-8 rounded-lg" [formRoot]="loginForm">
     <h1 class="text-3xl mb-4">{{ 'LOGIN-FORM.HEADER' | translate }}</h1>
     <div class="mb-4">
       <label class="font-bold" for="username">{{ 'LOGIN-FORM.USERNAME' | translate }}</label>
       <input
-        [formField]="form.username"
+        [formField]="loginForm.username"
         class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
         type="text"
         id="username"
@@ -13,7 +13,7 @@
     <div class="mb-4">
       <label class="font-bold" for="password">{{ 'LOGIN-FORM.PASSWORD' | translate }}</label>
       <input
-        [formField]="form.password"
+        [formField]="loginForm.password"
         class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
         type="password"
         id="password"
@@ -21,7 +21,7 @@
     </div>
     <div class="flex justify-end">
       <button
-        [disabled]="form().invalid()"
+        [disabled]="loginForm().invalid()"
         class="bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-white p-2 rounded-sm disabled:bg-slate-400">
         {{ 'LOGIN-FORM.BUTTON' | translate }}
       </button>

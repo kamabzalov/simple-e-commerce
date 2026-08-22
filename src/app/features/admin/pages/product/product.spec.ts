@@ -15,8 +15,8 @@ describe('Product', () => {
       providers: [
         provideTranslateService(),
         provideRouter([]),
-        {provide: ProductService, useValue: {getById: () => Promise.resolve({})}}
-      ]
+        { provide: ProductService, useValue: { getById: () => Promise.resolve({}) } },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductDetails);

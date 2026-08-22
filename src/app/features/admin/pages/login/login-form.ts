@@ -25,7 +25,7 @@ export class LoginForm {
   );
   private router = inject(Router);
 
-  protected form = form(
+  protected loginForm = form(
     this.loginModel,
     schemaPath => {
       required(schemaPath.username);
