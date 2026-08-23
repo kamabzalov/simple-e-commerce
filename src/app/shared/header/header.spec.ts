@@ -37,7 +37,6 @@ describe('Header', () => {
 
   it('should set current language', () => {
     component['changeLanguage']('ru');
-    fixture.detectChanges();
     expect(component['lang']()).toEqual('ru');
     expect(translateServiceMock.use).toHaveBeenCalledWith('ru');
   });

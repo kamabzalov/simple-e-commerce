@@ -80,7 +80,6 @@ describe('Home', () => {
 
     fixture = TestBed.createComponent(Home);
     component = fixture.componentInstance;
-    fixture.detectChanges();
 
     await fixture.whenStable();
 
@@ -113,7 +112,7 @@ describe('Home', () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/', Home);
     await harness.fixture.whenStable();
-    harness.fixture.detectChanges();
+    // harness.fixture.detectChanges();
 
     const links = harness.routeNativeElement!.querySelectorAll('a');
     expect(links.length).toEqual(2);
@@ -146,7 +145,6 @@ describe('Home', () => {
 
     fixture = TestBed.createComponent(Home);
     component = fixture.componentInstance;
-    fixture.detectChanges();
     await fixture.whenStable();
     fixture.detectChanges();
 

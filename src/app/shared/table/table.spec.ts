@@ -34,7 +34,6 @@ describe('Table', () => {
   it('should render without router errors when data is present', () => {
     fixture.componentRef.setInput('data', [{ id: 1 }]);
     fixture.componentRef.setInput('columns', ['id']);
-    fixture.detectChanges();
 
     expect(component).toBeTruthy();
   });
