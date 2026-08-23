@@ -28,7 +28,7 @@ describe('isAdminGuard', () => {
     expect(router.navigate).not.toHaveBeenCalled();
   });
 
-  it('should return true if token is present and not navigate', () => {
+  it('should return falsr if token is not present and not navigate', () => {
     localStorage.setItem('token', '');
 
     executeGuard({} as never, {} as never);

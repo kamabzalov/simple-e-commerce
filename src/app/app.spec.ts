@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
-import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 
 describe('App', () => {
   beforeEach(async () => {
@@ -11,8 +11,13 @@ describe('App', () => {
   });
 
   it('should create the app', () => {
+    const translateService = TestBed.inject(TranslateService);
+    const translateAddLangsSpy = vi.spyOn(translateService, 'addLangs');
+
     const fixture = TestBed.createComponent(App);
     const app = fixture.componentInstance;
+
     expect(app).toBeTruthy();
+    expect(translateAddLangsSpy).toHaveBeenCalledWith(['en', 'ru']);
   });
 });

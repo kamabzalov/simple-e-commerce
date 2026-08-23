@@ -12,10 +12,7 @@ describe('UserDetails', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [UserDetails],
-      providers: [
-        provideRouter([]),
-        provideTranslateService(),
-      ]
+      providers: [provideRouter([]), provideTranslateService()],
     })
       .overrideComponent(UserDetails, {
         set: {
