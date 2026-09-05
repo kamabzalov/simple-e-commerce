@@ -11,7 +11,7 @@
         <a class="text-white" routerLink="users">{{ 'DASHBOARD.HEADER.USERS' | translate }}</a>
       </li>
       <li>
-        <button class="text-white cursor-pointer" (click)="logout()">
+        <button data-testid="logout" class="text-white cursor-pointer" (click)="logout()">
           {{ 'DASHBOARD.LOGOUT' | translate }}
         </button>
       </li>

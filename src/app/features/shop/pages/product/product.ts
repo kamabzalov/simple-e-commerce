@@ -23,15 +23,13 @@ export class ProductDetails {
   private productService = inject(ProductService);
 
   protected productId = toSignal(this.route.paramMap.pipe(map(params => Number(params.get('id')))));
-  protected product: ResourceRef<Product | undefined> = rxResource<Product | undefined, unknown>({
-    stream: () => {
+  protected product = rxResource<Product, number | undefined>({
+    params: () => {
       const productId = this.productId();
 
-      if (!productId) {
-        return of(undefined);
-      }
-      return this.productService.getById(productId);
+      return productId && !Number.isNaN(productId) ? productId : undefined;
     },
+    stream: ({ params: productId }) => this.productService.getById(productId),
   });
 
   constructor() {

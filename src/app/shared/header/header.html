@@ -4,6 +4,7 @@
     <select
       #langSelect
       [value]="lang()"
+      data-testid="language-switcher"
       class="ml-auto bg-white rounded py-2 px-1"
       (change)="changeLanguage(langSelect.value)">
       <option value="en">English</option>
