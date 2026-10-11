@@ -1,5 +1,4 @@
 import { expect, test } from '@playwright/test';
-import { User } from '../../../../../src/app/core/models/user';
 
 test('open users admin page with the list of users', async ({ page }) => {
   const mockUsers = [

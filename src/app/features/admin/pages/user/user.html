@@ -24,6 +24,7 @@
           [formField]="userForm.username"
           class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
           type="text"
+          data-testid="username"
           id="username" />
       </div>
       <div class="mb-4">
@@ -34,6 +35,7 @@
           [formField]="userForm.email"
           class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
           type="email"
+          data-testid="email"
           id="email" />
       </div>
       <div class="mb-4">
@@ -44,6 +46,7 @@
           [formField]="userForm.name.firstname"
           class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
           type="text"
+          data-testid="firstName"
           id="firstName" />
       </div>
       <div class="mb-4">
@@ -54,6 +57,7 @@
           [formField]="userForm.name.lastname"
           class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
           type="text"
+          data-testid="lastName"
           id="lastName" />
       </div>
       <div class="mb-4">
@@ -64,10 +68,12 @@
           [formField]="userForm.phone"
           class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition duration-200 focus:border-indigo-500"
           type="text"
+          data-testid="phone"
           id="phone" />
       </div>
       <div class="flex justify-end">
         <button
+          data-testid="submit-button"
           class="bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-white p-2 rounded-sm disabled:bg-slate-400">
           {{ 'ADMIN_USER_PAGE.SAVE_BUTTON' | translate }}
         </button>

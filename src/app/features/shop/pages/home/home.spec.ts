@@ -112,7 +112,6 @@ describe('Home', () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/', Home);
     await harness.fixture.whenStable();
-    // harness.fixture.detectChanges();
 
     const links = harness.routeNativeElement!.querySelectorAll('a');
     expect(links.length).toEqual(2);
